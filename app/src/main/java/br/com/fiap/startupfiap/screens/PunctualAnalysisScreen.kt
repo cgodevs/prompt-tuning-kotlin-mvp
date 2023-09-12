@@ -36,10 +36,18 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import br.com.fiap.startupfiap.R
+import br.com.fiap.startupfiap.components.AnswerDialog
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PunctualAnalysisScreen(){
+    var gptAnswer = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris elementum ante a justo sodales, at lacinia ex maximus. Phasellus quis libero consequat, imperdiet leo eget, aliquet risus. Aliquam venenatis pellentesque arcu non posuere. Nam nisi sapien, tristique id urna eget, maximus eleifend mi. In ullamcorper eros nec sodales finibus. Aliquam vestibulum feugiat elit in lacinia. Vivamus quis erat risus. Ut imperdiet nibh vel dignissim pharetra. Vivamus nec interdum dolor, ut cursus ipsum. Morbi tincidunt tortor diam, sit amet mollis risus facilisis ac. Nullam blandit ante a justo maximus, a venenatis tortor posuere. Vivamus convallis congue hendrerit. Cras pharetra ante est, eget congue eros viverra a. Duis ullamcorper libero quam, eget egestas dui molestie vitae. Integer porttitor, nunc quis suscipit finibus, ante risus finibus nunc, non tincidunt sem massa in leo. Cras suscipit molestie viverra. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris elementum ante a justo sodales, at lacinia ex maximus. Phasellus quis libero consequat, imperdiet leo eget, aliquet risus. Aliquam venenatis pellentesque arcu non posuere. Nam nisi sapien, tristique id urna eget, maximus eleifend mi. In ullamcorper eros nec sodales finibus. Aliquam vestibulum feugiat elit in lacinia. Vivamus quis erat risus. Ut imperdiet nibh vel dignissim pharetra. Vivamus nec interdum dolor, ut cursus ipsum. Morbi tincidunt tortor diam, sit amet mollis risus facilisis ac. Nullam blandit ante a justo maximus, a venenatis tortor posuere. Vivamus convallis congue hendrerit. Cras pharetra ante est, eget congue eros viverra a. Duis ullamcorper libero quam, eget egestas dui molestie vitae. Integer porttitor, nunc quis suscipit finibus, ante risus finibus nunc, non tincidunt sem massa in leo. Cras suscipit molestie viverra"
+    val openAnswerDialog = remember { mutableStateOf(false) }
+    AnswerDialog(
+        onConfirmation = {openAnswerDialog.value = false},
+        dialogText = gptAnswer,
+        isOpen = openAnswerDialog.value
+    )
 
     var availableFileExtensions = userFiles.map{it.first}
 
@@ -131,7 +139,9 @@ fun PunctualAnalysisScreen(){
                     trailingIcon = {
                         IconButton(
                             enabled = userCommand.value != "",
-                            onClick = {},
+                            onClick = {
+                                openAnswerDialog.value = true
+                            },
                         ) {
                             Icon(
                                 imageVector = Icons.Default.Send,
