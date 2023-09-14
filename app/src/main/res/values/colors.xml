@@ -8,4 +8,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="TopMenuGray">#dee2e6</color>
+    <color name="neutral00">#F8F9FA</color>
+    <color name="neutral01">#E9ECEF</color>
+    <color name="neutral02">#DEE2E6</color>
+    <color name="neutral03">#CED4DA</color>
+    <color name="neutral04">#ADB5BD</color>
+    <color name="neutral05">#6C757D</color>
+    <color name="neutral06">#495057</color>
+    <color name="neutral07">#343A40</color>
+    <color name="neutral08">#212529</color>
 </resources>
