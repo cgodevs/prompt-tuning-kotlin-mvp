@@ -35,9 +35,10 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun ExploreScreen(){
     var userCommand = remember {
-        mutableStateOf("")
+        mutableStateOf("Em quantos % o balanço mensal da minha empresa, a Naskar, cresceu em relação a 2020?")
     }
-    var gptAnswer = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris elementum ante a justo sodales, at lacinia ex maximus. Phasellus quis libero consequat, imperdiet leo eget, aliquet risus. Aliquam venenatis pellentesque arcu non posuere. Nam nisi sapien, tristique id urna eget, maximus eleifend mi. In ullamcorper eros nec sodales finibus. Aliquam vestibulum feugiat elit in lacinia. Vivamus quis erat risus. Ut imperdiet nibh vel dignissim pharetra. Vivamus nec interdum dolor, ut cursus ipsum. Morbi tincidunt tortor diam, sit amet mollis risus facilisis ac. Nullam blandit ante a justo maximus, a venenatis tortor posuere. Vivamus convallis congue hendrerit. Cras pharetra ante est, eget congue eros viverra a. Duis ullamcorper libero quam, eget egestas dui molestie vitae. Integer porttitor, nunc quis suscipit finibus, ante risus finibus nunc, non tincidunt sem massa in leo. Cras suscipit molestie viverra. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris elementum ante a justo sodales, at lacinia ex maximus. Phasellus quis libero consequat, imperdiet leo eget, aliquet risus. Aliquam venenatis pellentesque arcu non posuere. Nam nisi sapien, tristique id urna eget, maximus eleifend mi. In ullamcorper eros nec sodales finibus. Aliquam vestibulum feugiat elit in lacinia. Vivamus quis erat risus. Ut imperdiet nibh vel dignissim pharetra. Vivamus nec interdum dolor, ut cursus ipsum. Morbi tincidunt tortor diam, sit amet mollis risus facilisis ac. Nullam blandit ante a justo maximus, a venenatis tortor posuere. Vivamus convallis congue hendrerit. Cras pharetra ante est, eget congue eros viverra a. Duis ullamcorper libero quam, eget egestas dui molestie vitae. Integer porttitor, nunc quis suscipit finibus, ante risus finibus nunc, non tincidunt sem massa in leo. Cras suscipit molestie viverra"
+
+    var gptAnswer = "No mês de agosto deste ano, o balanço mensal da Naskar registrou um incrível aumento de 52% em comparação com agosto de 2020. O balanço mensal em agosto de 2023 alcançou a marca de \$2.5 milhões, enquanto no mesmo período do ano anterior, em agosto de 2020, o balanço mensal foi de \$1.6 milhão."
 
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -52,7 +53,7 @@ fun ExploreScreen(){
 //                    .height(400.dp)
         ) {
             Text(
-                text = "Answer",
+                text = "Moui",
                 fontWeight = FontWeight.Bold
             )
             Spacer(modifier = Modifier.height(8.dp))
@@ -80,7 +81,7 @@ fun ExploreScreen(){
                 },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
                 placeholder = {
-                    Text(text = "Ask a question or send a command")
+                    Text(text = "Faça uma pergunta ou envie um comando")
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -99,7 +100,7 @@ fun ExploreScreen(){
                 colors = TextFieldDefaults.textFieldColors(
                     containerColor = Color.White,
                     textColor = Color.Black
-                )
+                ),
             )
         }
 

@@ -48,14 +48,14 @@ fun ScreenBase(
 ) {
     val items = listOf(
         DrawerItem(
-            label = "Punctual Analysis",
-            icon = painterResource(id = R.drawable.explore),
-            route = "analyze"
-        ),
-        DrawerItem(
-            label = "Explore",
+            label = "Explorar",
             icon = painterResource(id = R.drawable.analyze),
             route = "explore"
+        ),
+        DrawerItem(
+            label = "Análise pontual",
+            icon = painterResource(id = R.drawable.explore),
+            route = "analyze"
         )
     )
     var selectedItemIndex = items.filter{it -> it.route == nav.currentDestination?.route}[0]
@@ -74,7 +74,7 @@ fun ScreenBase(
                         .padding(24.dp),
                     contentAlignment = Alignment.TopStart
                 ) {
-                    Text(text = "Choose an action", style = MaterialTheme.typography.titleMedium)
+                    Text(text = "Olá, usuário", style = MaterialTheme.typography.titleMedium)
                 }
                 Spacer(Modifier.height(12.dp))
                 items.forEach { item ->

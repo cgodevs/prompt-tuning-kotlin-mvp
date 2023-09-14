@@ -88,7 +88,7 @@ fun PunctualAnalysisScreen(){
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp),
                     fontFamily = FontFamily(Font(R.font.roboto_italic)),
-                    text = "Choose a file: "
+                    text = "Escolha um arquivo: "
                 )
                 Spacer(modifier = Modifier.height(8.dp))
 
@@ -131,7 +131,7 @@ fun PunctualAnalysisScreen(){
                     },
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
                     placeholder = {
-                        Text(text = "Ask a question or send a command")
+                        Text(text = "Faça uma pergunta ou envie um comando")
                     },
                     modifier = Modifier
                         .fillMaxWidth()
