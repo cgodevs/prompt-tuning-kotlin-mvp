@@ -28,10 +28,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import br.com.fiap.startupfiap.R
 import br.com.fiap.startupfiap.components.Input
 
@@ -45,7 +49,9 @@ fun ExploreScreen(){
     var gptAnswer = "No mês de agosto deste ano, o balanço mensal da Naskar registrou um incrível aumento de 52% em comparação com agosto de 2020. O balanço mensal em agosto de 2023 alcançou a marca de \$2.5 milhões, enquanto no mesmo período do ano anterior, em agosto de 2020, o balanço mensal foi de \$1.6 milhão."
 
     Box(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(colorResource(id = R.color.neutral00)),
         contentAlignment = Alignment.Center
     ) {
 
@@ -57,8 +63,13 @@ fun ExploreScreen(){
 //                    .height(400.dp)
         ) {
             Text(
-                text = "Moui",
-                fontWeight = FontWeight.Bold
+                text = "Moui:",
+                style = TextStyle(
+                    fontSize = 26.sp,
+                    fontFamily = FontFamily(Font(R.font.roboto_regular)),
+                    fontWeight = FontWeight(1000),
+                    color = colorResource(id = R.color.neutral08),
+                )
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
@@ -66,14 +77,20 @@ fun ExploreScreen(){
                 textAlign = TextAlign.Left,
                 modifier = Modifier
                     .verticalScroll(rememberScrollState())
-                    .padding(vertical = 8.dp)
+                    .padding(vertical = 8.dp),
+                style = TextStyle(
+                    fontSize = 24.sp,
+                    fontFamily = FontFamily(Font(R.font.roboto_regular)),
+                    fontWeight = FontWeight(400),
+                    color = colorResource(id = R.color.neutral08),
+                )
             )
         }
 
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(Color.Black)
+                .background(colorResource(id = R.color.neutral00))
                 .padding(4.dp)
                 .height(100.dp)
                 .align(Alignment.BottomCenter),

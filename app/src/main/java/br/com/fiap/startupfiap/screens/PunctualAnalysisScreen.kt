@@ -20,6 +20,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRowDefaults
@@ -128,7 +129,11 @@ fun PunctualAnalysisScreen(){
                                     selectedRadioIndex = selectedIndex
                                 },
                                 modifier = Modifier
-                                    .padding(end = 8.dp)
+                                    .padding(end = 8.dp),
+                                colors = RadioButtonDefaults.colors(
+                                    selectedColor = colorResource(R.color.neutral08),
+                                    unselectedColor = colorResource(R.color.neutral05)
+                                )
                             )
 
                             Text(
