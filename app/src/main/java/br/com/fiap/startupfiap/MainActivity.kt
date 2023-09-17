@@ -14,9 +14,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import br.com.fiap.startupfiap.components.*
 import br.com.fiap.startupfiap.screens.*
 import br.com.fiap.startupfiap.ui.theme.StartupFIAPTheme
@@ -56,7 +58,27 @@ class MainActivity : ComponentActivity() {
                         composable(route = "analyze") {
                             ScreenBase(
                                 screenTitle = "Analyze",
-                                innerContent = { PunctualAnalysisScreen() },
+                                innerContent = { PunctualAnalysisScreen(nav) },
+                                drawerState = drawerState,
+                                scope = scope,
+                                nav = nav
+                            )
+                        }
+                        composable(
+                            route = "gpt_answer/{answer}",
+                            arguments = listOf(navArgument("answer"){
+                                type = NavType.StringType
+                                defaultValue = "No answer"
+                            })
+                        ) {
+                            backStackEntry ->
+                            ScreenBase(
+                                screenTitle = "",
+                                innerContent = {
+                                    GPTAnswerScreen(
+                                        nav,
+                                        backStackEntry.arguments?.getString("answer"))
+                                },
                                 drawerState = drawerState,
                                 scope = scope,
                                 nav = nav
@@ -70,6 +92,12 @@ class MainActivity : ComponentActivity() {
 }
 
 
+
+
+
+
+
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
@@ -78,12 +106,6 @@ fun GreetingPreview() {
         val nav = rememberNavController()
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scope = rememberCoroutineScope()
-        ScreenBase(
-            screenTitle = "Explore",
-            innerContent = { ExploreScreen() },
-            drawerState = drawerState,
-            scope = scope,
-            nav = nav
-        )
+        GPTAnswerScreen(nav, "Teste!")
     }
 }

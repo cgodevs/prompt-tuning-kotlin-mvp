@@ -58,7 +58,7 @@ fun ScreenBase(
             route = "explore"
         )
     )
-    var selectedItemIndex = items.filter{it -> it.route == nav.currentDestination?.route}[0]
+    val selectedItemIndex = items.firstOrNull { it.route == nav.currentDestination?.route }
     var selectedItem by remember { mutableStateOf(selectedItemIndex) }
 
     ModalNavigationDrawer(

@@ -37,7 +37,9 @@ fun ExploreScreen(){
     var userCommand = remember {
         mutableStateOf("")
     }
-    var gptAnswer = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris elementum ante a justo sodales, at lacinia ex maximus. Phasellus quis libero consequat, imperdiet leo eget, aliquet risus. Aliquam venenatis pellentesque arcu non posuere. Nam nisi sapien, tristique id urna eget, maximus eleifend mi. In ullamcorper eros nec sodales finibus. Aliquam vestibulum feugiat elit in lacinia. Vivamus quis erat risus. Ut imperdiet nibh vel dignissim pharetra. Vivamus nec interdum dolor, ut cursus ipsum. Morbi tincidunt tortor diam, sit amet mollis risus facilisis ac. Nullam blandit ante a justo maximus, a venenatis tortor posuere. Vivamus convallis congue hendrerit. Cras pharetra ante est, eget congue eros viverra a. Duis ullamcorper libero quam, eget egestas dui molestie vitae. Integer porttitor, nunc quis suscipit finibus, ante risus finibus nunc, non tincidunt sem massa in leo. Cras suscipit molestie viverra. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris elementum ante a justo sodales, at lacinia ex maximus. Phasellus quis libero consequat, imperdiet leo eget, aliquet risus. Aliquam venenatis pellentesque arcu non posuere. Nam nisi sapien, tristique id urna eget, maximus eleifend mi. In ullamcorper eros nec sodales finibus. Aliquam vestibulum feugiat elit in lacinia. Vivamus quis erat risus. Ut imperdiet nibh vel dignissim pharetra. Vivamus nec interdum dolor, ut cursus ipsum. Morbi tincidunt tortor diam, sit amet mollis risus facilisis ac. Nullam blandit ante a justo maximus, a venenatis tortor posuere. Vivamus convallis congue hendrerit. Cras pharetra ante est, eget congue eros viverra a. Duis ullamcorper libero quam, eget egestas dui molestie vitae. Integer porttitor, nunc quis suscipit finibus, ante risus finibus nunc, non tincidunt sem massa in leo. Cras suscipit molestie viverra"
+    var gptAnswer = "Screen under construction.\n\n" +
+            "Its functionality allows an user to explore and analyze or command actions over a set of their files in batch, all at once.\n\n" +
+            "This space is dedicated to the intelligent assistant comeback on the matter."
 
     Box(
         modifier = Modifier.fillMaxSize(),
@@ -87,7 +89,7 @@ fun ExploreScreen(){
                     .padding(12.dp),
                 trailingIcon = {
                     IconButton(
-                        enabled = userCommand.value != "",
+                        enabled = false, //userCommand.value != "",
                         onClick = {},
                     ){
                         Icon(
