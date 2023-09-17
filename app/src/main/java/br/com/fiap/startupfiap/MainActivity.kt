@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
                     ) {
                         composable(route = "explore") {
                             ScreenBase(
-                                screenTitle = "Explore",
+                                screenTitle = "Explorar",
                                 innerContent = { ExploreScreen() },
                                 drawerState = drawerState,
                                 scope = scope,
@@ -55,7 +55,7 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(route = "analyze") {
                             ScreenBase(
-                                screenTitle = "Analyze",
+                                screenTitle = "Análise pontual",
                                 innerContent = { PunctualAnalysisScreen() },
                                 drawerState = drawerState,
                                 scope = scope,

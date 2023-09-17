@@ -14,13 +14,17 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Send
+import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.ScrollableTabRow
 import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRowDefaults
+import androidx.compose.material3.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
@@ -31,12 +35,17 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import br.com.fiap.startupfiap.R
 import br.com.fiap.startupfiap.components.AnswerDialog
+import br.com.fiap.startupfiap.components.Input
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -59,7 +68,11 @@ fun PunctualAnalysisScreen(){
     var selectedRadioIndex by remember { mutableStateOf(-1) }
     var userCommand = remember {mutableStateOf("")}
 
-    Column(modifier = Modifier.fillMaxWidth()){
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(colorResource(R.color.neutral00))
+    ) {
 
         CustomScrollableTabRow(
             tabs = availableFileExtensions,
@@ -84,12 +97,18 @@ fun PunctualAnalysisScreen(){
                     .align(Alignment.TopCenter)
             ) {
                 Text(
+                    text = "Escolha um arquivo: ",
+                    style = TextStyle(
+                        fontSize = 26.sp,
+                        fontFamily = FontFamily(Font(R.font.roboto_regular)),
+                        fontWeight = FontWeight(600),
+                        color = colorResource(R.color.neutral08),
+                    ),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 16.dp),
-                    fontFamily = FontFamily(Font(R.font.roboto_italic)),
-                    text = "Choose a file: "
                 )
+
                 Spacer(modifier = Modifier.height(8.dp))
 
                 LazyColumn(
@@ -103,15 +122,29 @@ fun PunctualAnalysisScreen(){
                             verticalAlignment = Alignment.CenterVertically
                         ) {
                             val selectedIndex = selectedExtensionFiles.indexOf(item)
+
                             RadioButton(
                                 selected = selectedRadioIndex == selectedIndex,
                                 onClick = {
                                     selectedRadioIndex = selectedIndex
                                 },
                                 modifier = Modifier
-                                    .padding(end = 8.dp)
+                                    .padding(end = 8.dp),
+                                colors = RadioButtonDefaults.colors(
+                                    selectedColor = colorResource(R.color.neutral08),
+                                    unselectedColor = colorResource(R.color.neutral05)
+                                )
                             )
-                            Text(text = item)
+
+                            Text(
+                                text = item,
+                                style = TextStyle(
+                                    fontSize = 24.sp,
+                                    fontFamily = FontFamily(Font(R.font.roboto_regular)),
+                                    fontWeight = FontWeight(500),
+                                    color = colorResource(R.color.neutral08),
+                                )
+                            )
                         }
                     }
                 }
@@ -119,40 +152,20 @@ fun PunctualAnalysisScreen(){
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .background(Color.Black)
+                    .background(colorResource(R.color.neutral00))
                     .padding(4.dp)
                     .height(100.dp)
                     .align(Alignment.BottomCenter),
             ) {
-                OutlinedTextField(
+                Input(
                     value = "${userCommand.value}",
-                    onValueChange = { it ->
+                    placeholder = "Faça uma pergunta ou envie um comando",
+                    onChange = { it: String ->
                         userCommand.value = it
                     },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
-                    placeholder = {
-                        Text(text = "Ask a question or send a command")
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(12.dp),
-                    trailingIcon = {
-                        IconButton(
-                            enabled = userCommand.value != "",
-                            onClick = {
-                                openAnswerDialog.value = true
-                            },
-                        ) {
-                            Icon(
-                                imageVector = Icons.Default.Send,
-                                contentDescription = "Send Icon",
-                            )
-                        }
-                    },
-                    colors = TextFieldDefaults.textFieldColors(
-                        containerColor = Color.White,
-                        textColor = Color.Black
-                    )
+                    {
+                        openAnswerDialog.value = true
+                    }
                 )
             }
         }
@@ -167,14 +180,38 @@ fun CustomScrollableTabRow(
 ) {
     ScrollableTabRow(
         selectedTabIndex = selectedTabIndex,
-        contentColor = Color.Black,
+        contentColor = colorResource(R.color.neutral08),
+        containerColor = colorResource(R.color.neutral00),
         edgePadding = 0.dp,
+        divider = {
+            Divider(
+                color = colorResource(R.color.neutral03),
+                thickness = 4.dp
+            )
+        },
+        indicator = { tabPositions ->
+            TabRowDefaults.Indicator(
+                color = colorResource(R.color.neutral08),
+                modifier = Modifier.tabIndicatorOffset(tabPositions[selectedTabIndex])
+            )
+        }
     ) {
         tabs.forEachIndexed { tabIndex, tab ->
             Tab(
                 selected = selectedTabIndex == tabIndex,
                 onClick = { onTabClick(tabIndex)},
-                text = { Text(text = tab) }
+                text = {
+                    Text(
+                        text = tab,
+                        style = TextStyle(
+                            fontSize = 28.sp,
+                            fontFamily = FontFamily(Font(R.font.roboto_regular)),
+                            fontWeight = FontWeight(600),
+                        )
+                    )
+               },
+                selectedContentColor = colorResource(R.color.neutral08),
+                unselectedContentColor = colorResource(R.color.neutral07)
             )
         }
     }
