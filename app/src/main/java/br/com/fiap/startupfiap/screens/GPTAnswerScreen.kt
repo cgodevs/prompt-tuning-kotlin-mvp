@@ -1,6 +1,5 @@
 package br.com.fiap.startupfiap.screens
 
-import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -8,14 +7,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import br.com.fiap.startupfiap.api.GptAssistant
 import br.com.fiap.startupfiap.components.GPTAnswerSpace
 
 @Composable
@@ -24,7 +20,7 @@ fun GPTAnswerScreen(nav: NavHostController){
     val filePath = arguments?.getString("filePath") ?: "No filePath"
     val command = arguments?.getString("command") ?: "No command"
 
-    val gptAssistant = GptAssistant()
+//    val gptAssistant = GptAssistant()
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -43,16 +39,16 @@ fun GPTAnswerScreen(nav: NavHostController){
 
         Row(modifier = Modifier.fillMaxWidth()){
             GPTAnswerSpace(
-                content = filePath
+                content = "Example Answer"
             )
         }
-        Button(
-            onClick = {
-                Log.d("StartupFIAPLogs", gptAssistant.askGpt("tell a joke"))
-            }
-        ){
-            Text("click")
-        }
+//        Button(
+//            onClick = {
+//                Log.d("StartupFIAPLogs", gptAssistant.askGpt("tell a joke"))
+//            }
+//        ){
+//            Text("click")
+//        }
     }
 }
 
