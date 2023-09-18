@@ -7,8 +7,6 @@ import android.os.Environment
 import android.util.Log
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.core.app.ActivityCompat
 import br.com.fiap.startupfiap.screens.copyAssetFileToStorage
 import br.com.fiap.startupfiap.screens.copyFile
@@ -19,7 +17,6 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
-import java.util.Scanner
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -136,7 +133,6 @@ fun copyFile(sourceFile: File, destinationFile: File) {
 }
 
 
-@Composable
 fun printSampleFileContentToLogs(context: Context, fileName: String) {
     try {
         val inputStream = context.assets.open("sampledata/${fileName}")
@@ -155,46 +151,33 @@ fun printSampleFileContentToLogs(context: Context, fileName: String) {
     }
 }
 
-@Composable
-fun extractContentFromTextDocument(file: File): String {
-    val content = remember { StringBuilder() }
-    try {
-        val fis = FileInputStream(file)
-        val scanner = Scanner(fis)
-
-        while (scanner.hasNextLine()) {
-            content.append(scanner.nextLine()).append("\n")
-        }
-        fis.close()
-    } catch (e: Exception) {
-        e.printStackTrace()
-    }
-    return content.toString()
-}
-
-
 fun scanSystemForFiles(directoryPath: String): Map<String, List<String>> {
-    val fileHashMap = mutableMapOf<String, List<String>>()
-
+    val fileHashMap = mutableMapOf<String, MutableList<String>>()
     val directory = File(directoryPath)
 
     if (directory.exists() && directory.isDirectory) {
-        val files = directory.listFiles()
-        files?.forEach { file ->
-            if (file.isFile) {
-                val extension = file.extension.toLowerCase()
-                val fileName = file.name
-
-                // Adicione o arquivo ao HashMap com base na extensão
-                if (fileHashMap.containsKey(extension)) {
-                    val existingFiles = fileHashMap[extension] as MutableList<String>
-                    existingFiles.add(fileName)
-                } else {
-                    fileHashMap[extension] = mutableListOf(fileName)
-                }
-            }
-        }
+        scanDirectory(directory, fileHashMap)
     }
 
     return fileHashMap
+}
+
+private fun scanDirectory(directory: File, fileHashMap: MutableMap<String, MutableList<String>>) {
+    val files = directory.listFiles()
+    files?.forEach { file ->
+        if (file.isFile) {
+            val extension = file.extension.toLowerCase()
+            val fileName = file.name
+
+            if (!fileHashMap.containsKey(extension)) {
+                fileHashMap[extension] = mutableListOf(fileName)
+            } else {
+                val existingFiles = fileHashMap[extension] as MutableList<String>
+                existingFiles.add(fileName)
+            }
+        } else if (file.isDirectory) {
+            // Recursively scan subdirectories
+            scanDirectory(file, fileHashMap)
+        }
+    }
 }

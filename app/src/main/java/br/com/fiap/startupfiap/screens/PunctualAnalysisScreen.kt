@@ -1,5 +1,7 @@
 package br.com.fiap.startupfiap.screens
 
+import android.os.Environment
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -37,12 +39,22 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import br.com.fiap.startupfiap.R
+import br.com.fiap.startupfiap.tools.scanSystemForFiles
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PunctualAnalysisScreen(
     nav: NavHostController
 ){
+    val allDownloadedFiles = scanSystemForFiles(
+        Environment.getExternalStoragePublicDirectory(
+            Environment.DIRECTORY_DOWNLOADS
+        ).absolutePath
+    )
+    allDownloadedFiles.forEach{(ext, files) ->
+        Log.d("StartupFIAPLog", "Extension: $ext | Files: $files")
+    }
+
     var gptAnswer by remember { mutableStateOf("GPT Answer Test") }
 
     var availableFileExtensions = userFiles.map{it.first}
