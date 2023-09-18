@@ -8,9 +8,6 @@ import android.util.Log
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.core.app.ActivityCompat
-import br.com.fiap.startupfiap.screens.copyAssetFileToStorage
-import br.com.fiap.startupfiap.screens.copyFile
-import br.com.fiap.startupfiap.screens.getAllAssetFileNames
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import java.io.File
@@ -113,6 +110,7 @@ private fun writeBytesToFile(file: File, data: ByteArray) {
     }
 }
 
+
 fun copyFile(sourceFile: File, destinationFile: File) {
     var inputStream: FileInputStream? = null
     try {
@@ -161,6 +159,7 @@ fun scanSystemForFiles(directoryPath: String): Map<String, List<String>> {
 
     return fileHashMap
 }
+
 
 private fun scanDirectory(directory: File, fileHashMap: MutableMap<String, MutableList<String>>) {
     val files = directory.listFiles()

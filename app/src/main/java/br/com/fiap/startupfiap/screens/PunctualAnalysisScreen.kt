@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import br.com.fiap.startupfiap.R
 import br.com.fiap.startupfiap.tools.scanSystemForFiles
+import java.net.URLEncoder
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -65,9 +66,7 @@ fun PunctualAnalysisScreen(
 
     var selectedRadioIndex by remember { mutableStateOf(-1) }
     var userCommand = remember {mutableStateOf("")}
-    var gptAnswer by remember { mutableStateOf("GPT Answer Test") }
-
-    var selectedFile: String
+    var selectedFile = remember {mutableStateOf("")}
 
     Column(modifier = Modifier.fillMaxWidth()){
 
@@ -119,8 +118,8 @@ fun PunctualAnalysisScreen(
                                 selected = selectedRadioIndex == selectedIndex,
                                 onClick = {
                                     selectedRadioIndex = selectedIndex
-                                    selectedFile = selectedExtensionFiles[selectedRadioIndex]
-                                    Log.d("StartupFIAPLog", "selectedFile: $selectedFile")
+                                    selectedFile.value = item
+                                    Log.d("StartupFIAPLog", "selectedFile: ${selectedFile.value}")
                                 },
                                 modifier = Modifier
                                     .padding(end = 8.dp),
@@ -158,7 +157,10 @@ fun PunctualAnalysisScreen(
                         IconButton(
                             enabled = userCommand.value != "" && selectedRadioIndex != -1,
                             onClick = {
-                                nav.navigate(route="gpt_answer/${gptAnswer}")
+                                val encodedFilePath = URLEncoder.encode(selectedFile.value, "UTF-8")
+                                val fullRoute = "gpt_answer/${encodedFilePath}/${userCommand.value}"
+                                Log.d("StartupFIAPLog", "full route: $fullRoute")
+                                nav.navigate(fullRoute)
                             },
                         ) {
                             Icon(

@@ -1,7 +1,6 @@
 package br.com.fiap.startupfiap.screens
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -9,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.ArrowBack
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -19,9 +17,10 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 
 @Composable
-fun GPTAnswerScreen(nav: NavHostController, answer: String?){
+fun GPTAnswerScreen(nav: NavHostController){
     val arguments = nav.currentBackStackEntry?.arguments
-    val answer = arguments?.getString("answer") ?: "No answer"
+    val filePath = arguments?.getString("filePath") ?: "No filePath"
+    val command = arguments?.getString("command") ?: "No command"
 
     Column(
         modifier = Modifier.fillMaxSize()
@@ -46,10 +45,13 @@ fun GPTAnswerScreen(nav: NavHostController, answer: String?){
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(24.dp)
+                    .padding(vertical = 8.dp, horizontal = 16.dp)
             ){
                 Text(
-                    text = answer,
+                    text = filePath,
+                )
+                Text(
+                    text = command,
                 )
             }
         }

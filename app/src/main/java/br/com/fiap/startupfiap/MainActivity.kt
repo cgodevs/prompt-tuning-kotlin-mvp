@@ -41,7 +41,6 @@ class MainActivity : ComponentActivity() {
                     // -------------- Add Sample Data to External Storage ---------------
                     val appContext = this
                     saveSampleFilesToExternalStorage(appContext)
-
                     // --------------------- State Variables  -------------------------------
                     val nav = rememberNavController()
                     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
@@ -71,19 +70,22 @@ class MainActivity : ComponentActivity() {
                             )
                         }
                         composable(
-                            route = "gpt_answer/{answer}",
-                            arguments = listOf(navArgument("answer"){
-                                type = NavType.StringType
-                                defaultValue = "No answer"
-                            })
+                            route = "gpt_answer/{filePath}/{command}",
+                            arguments = listOf(
+                                navArgument("filePath"){
+                                    type = NavType.StringType
+                                    defaultValue = "No path"
+                                },
+                                navArgument("command"){
+                                    type = NavType.StringType
+                                    defaultValue = "No command"
+                                }
+                            )
                         ) {
-                            backStackEntry ->
                             ScreenBase(
                                 screenTitle = "",
                                 innerContent = {
-                                    GPTAnswerScreen(
-                                        nav,
-                                        backStackEntry.arguments?.getString("answer"))
+                                    GPTAnswerScreen(nav)
                                 },
                                 drawerState = drawerState,
                                 scope = scope,
@@ -112,6 +114,6 @@ fun GreetingPreview() {
         val nav = rememberNavController()
         val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
         val scope = rememberCoroutineScope()
-        GPTAnswerScreen(nav, "Teste!")
+        GPTAnswerScreen(nav)
     }
 }
