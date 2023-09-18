@@ -71,4 +71,14 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.6.0")
     implementation ("com.google.accompanist:accompanist-navigation-animation:0.30.1")
     implementation("com.google.android.material:material:1.7.0-alpha03")
+
+    //Retrofit para realizar requests
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0") // para Gson
+    implementation ("com.squareup.retrofit2:converter-moshi:2.9.0") // para Moshi
+    implementation ("com.squareup.retrofit2:converter-protobuf:2.9.0") // para Protobuf
+    implementation ("com.squareup.retrofit2:converter-wire:2.9.0") // para Wire
+    implementation ("com.squareup.retrofit2:converter-simplexml:2.9.0") // para Simple XML
+    implementation ("com.squareup.retrofit2:converter-jaxb:2.9.0") // para JAXB
+    implementation ("com.squareup.retrofit2:converter-scalars:2.9.0") // para Scalars
 }

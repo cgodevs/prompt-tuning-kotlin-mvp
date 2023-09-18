@@ -1,0 +1,87 @@
+Ctrl +F1 (F2)+ Fn = deixar interface mais clara ou mais escura
+
+F = full screen >> only image mode
+
+Clicar duas vezes na lupa = imagem em 100% resolução
+Clicar duas vezes na mão = imagem se encaixa na tela de trabalho
+
+HOLD SPACEBAR = HANDTOOL
+
+Selecionar enquanto segura Alt= selecionar a partir de um centro onde se encontrava o cursor
+Selecionar enquanto segura Shift = manter proporções iguais ou originais de W e H 
+Ctrl +Alt +Z = desfaz várias últimas ações  
+Ctrl + Shift +Z = refaz várias últimas ações  desfeitas
+
+ADOBE BRIDGE "Tools>BATCH RENAME" FOR THE LOVE OF GOD pra renomear uma penca de foto de uma vez só!
+
+Adjustments > Hue/Saturation > ( ) Colorize = mudar a cor!
+
+Pra fazer a fonte de letra de meme, se escreve o texto em cor branca e fonte Impact, daí se adiciona o efeito (fx) STROKE.
+
+SOBRE A MARAVILHOSA OPÇÃO "CONTIGUOUS" DA MAGIC WAND: enquanto estiver selecionada, a ferramenta identifica todo o local adjacente à cor da região selecionada, mas só aquela ÚNICA região toda grudada na mesma cor.
+Se não estiver selecionada, a ferramenta reconhece TODOS os outros lugares de cor semelhante à da região considerada. Vamos ver seleções em diversos lugares diferentes.
+
+Para copiar rapidamente um objeto (use o "move tool"), pressione Alt, clique no objeto e o arraste para outra região, isso cria uma nova imagem e seu correspondente novo layer.
+
+MELDEEEELS NA  FERRAMENTA MOVE TOOL, A OPÇÃO "Auto-Select", quando ativada, torna o programa capaz de reconhecer e selecionar um layer sozinho só de ir clicando nas imagens, e não ter que ir até a aba Layers e ficar clicando um por um, wtf!!
+
+File > Automate > Crop and straighten photos = para muitas fotos digitalizadas juntas que a gente colocou por falta de pasciência de fazer uma por uma (COMO EU JÁ FIZ ¬_¬')
+
+Se a gente tiver duas abas abertas e quiser passar a imagem de uma para a outra, em forma de um novo layer, tem que copiar tudo (select all>copy) e ir lá na outra aba e clicar em paste
+
+Enquanto for cortar uma foto, segure o Ctrl para evitar que a borda da seleção dê aqueles "pulinhos" ou "snapping"
+
+Dodge Tool Exposure for light-colored Eyes: 20%
+
+Com o Grid na tela (View>Show>Grid, não se esquecendo que podemos ajustar as qualidades do Grid em Edit>Preferences> Grid etc) , coloca o cursor bem no meio e segura o Alt enquanto estiver selecionando em retângulo, as dimensões do retângulo serão as mesmas que a da imagem (em width e height)
+
+
+About masks: black blocks; white reveals!
+Aquela questão de trabalhar com um pincel preto ou branco em um layer pra revelar o que está atrás dele tem a ver com essa propriedade das máscaras. Claro que se vocÊ tem a intenção de pintar um canto com um pincel pra revelar o layer que está por trás do layer atual, precisa add ao layer atual uma linda "mask". Ela já aparece toda branca, significando que está revelando a poha toda, usar o pincel preto para esconder o que quiser e ali fazer aparecer oque está por trás.
+
+No pincel: clique uma vez; mova o mouse para um outro ponto; mantenha shift pressionada e então clique lá para criar uma linha reta.
+
+Para selecionar regiões por cor: Select>Color Range
+Em Select > Grow / Similar: estas são funções ligadas diretamente à ferramenta magic wand, grow selecionar áreas de uma mesma tonalidade COLADAS à região já selecionada; similar seleciona todas aquelas, perto ou longe, de uma mesma tonalidade que a dela. 
+
+Em Select > Coloro Range, há uma nova opção que é a de detectar tons de pele. Uma graça :)
+
+Em "Surface Blur" temos um blur mais inteligente que o gaussian blur, este é usado para identificar regiões de rosto.
+
+Se a gente usa uma modificação nos Levels pra dar mais contraste em um rosto, mas aí acaba ficando em uma tonalidade muito alaranjada, podemos usar no novo layer que surgiu junto com os levels que aplicamos uma forma diferente de blending que não seja o "Normal". Podemos usar o "luminosity", este sim, conserva só as regiões de preto e branco que queriamos adicionar à imagem.
+
+
+Às vezes a gente usa muito do patch tool e termina com um resultado bastante artificial, em um rosto por exemplo. Neste caso é interessante usar o "history brush tool" para voltar a revelar um pouco dos detalhes que apagamos (claro que se redefine a opacidade desta ferramenta). Se a gente usa esse brush com opacidade de 20%, é legal passar no local umas duas vezes para revelar (2x20%=) 40% da pele de volta em mulheres, ou até 3 vzs para ficar em 60%.
+
+Uma coisa importante pra modificar as proporções de um rosto, como um queixo duplo: Se usa a ferramenta"forward warp tool" dentro do filtro "liquify". Após a imagem melhorada como queremos, voltamos um passo dentro do painel history e clicamos no ícone de câmera, isso vai gerar um "snapshot 1" dentro do history, beleza deixa aí. Volte a clicar na ação "liquify" dentro do history.  Agora com a ferramenta history brush tool podemos revelar detalhes da imagem original e melhorar a qualidade da mudança feita com ajuda do liquify.
+
+Meus jovens, vou ensinar-lhes a mudar o tom ou tirar uma maquiagem colorida dos zóio. 
+Use o Eyedropper Tool para selecionar uma região do rosto (pode ser mais clara ou mais escura, preste atenção nisso para o resultado e tem que ser Sample Size>3 by 3 Average). 
+Selecione Brush>Mode>Color, só pintar por cima da região colorida. A pele colorida volta a ter o tom de pele selecionado (que fica mais claro ou escuro, dependendo do que vc selecionou com o eyedropper).
+Nunca se esqueça que é bom ir alterando a opacidade.
+E o Burn tool é bom pra usar nos cílios e deixar mais escuro, como se fosse rímel (sem esqcr de selecioná-lo em Mode>Shadows, para reconhecer que deve escurecer as sombras).
+
+
+
+
+
+
+(Minibridge wouldn't show!
+Windows:
+— open registry editor (press Win+R, type in regedit and press OK)
+— navigate in the tree structure, as is shown on the screenshot below, to:
+      HKEY_CURRENT_USER / Software / Adobe / CSXS.#
+(instead of #, you may see 2, 2.5 or 3 depending on your CS version)
+— right-click on the right pane and insert a String value
+— name it PlayerDebugMode and set its value to 1
+— restart Photoshop/any application with Mini Bridge)
+(Liquify tool wouldn't work, inadvertedly in Advanced mode of Liquify, Show Backdrop Mode is set to "Front" instead of "Behind", careful with that!)
+
+
+
+
+
+
+
+
+

@@ -21,6 +21,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import br.com.fiap.startupfiap.components.*
 import br.com.fiap.startupfiap.screens.*
+import br.com.fiap.startupfiap.tools.saveSampleFilesToExternalStorage
 import br.com.fiap.startupfiap.ui.theme.StartupFIAPTheme
 import com.example.material3components.ScreenBase
 
@@ -30,12 +31,17 @@ class MainActivity : ComponentActivity() {
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             StartupFIAPTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
+                    // -------------- Add Sample Data to External Storage ---------------
+                    val appContext = this
+                    saveSampleFilesToExternalStorage(appContext)
+
                     // --------------------- State Variables  -------------------------------
                     val nav = rememberNavController()
                     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
