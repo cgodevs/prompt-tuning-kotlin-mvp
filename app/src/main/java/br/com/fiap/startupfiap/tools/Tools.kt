@@ -168,12 +168,13 @@ private fun scanDirectory(directory: File, fileHashMap: MutableMap<String, Mutab
         if (file.isFile) {
             val extension = file.extension.toLowerCase()
             val fileName = file.name
+            val fullFileName = "$directory/$fileName"
 
             if (!fileHashMap.containsKey(extension)) {
-                fileHashMap[extension] = mutableListOf(fileName)
+                fileHashMap[extension] = mutableListOf(fullFileName)
             } else {
                 val existingFiles = fileHashMap[extension] as MutableList<String>
-                existingFiles.add(fileName)
+                existingFiles.add(fullFileName)
             }
         } else if (file.isDirectory) {
             // Recursively scan subdirectories

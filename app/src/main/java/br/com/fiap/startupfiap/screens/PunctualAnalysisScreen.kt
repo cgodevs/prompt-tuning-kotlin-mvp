@@ -51,20 +51,22 @@ fun PunctualAnalysisScreen(
             Environment.DIRECTORY_DOWNLOADS
         ).absolutePath
     )
-    allDownloadedFiles.forEach{(ext, files) ->
-        Log.d("StartupFIAPLog", "Extension: $ext | Files: $files")
-    }
+//    allDownloadedFiles.forEach{(ext, files) ->
+//        Log.d("StartupFIAPLog", "Extension: $ext | Files: $files")
+//    }
 
-    var gptAnswer by remember { mutableStateOf("GPT Answer Test") }
-
-    var availableFileExtensions = userFiles.map{it.first}
+    var availableFileExtensions = allDownloadedFiles.keys.toList()
     var selectedTabIndex by remember { mutableStateOf(0) }
-    var selectedTabName by remember { mutableStateOf(availableFileExtensions.getOrElse(selectedTabIndex) { "" }) }
-    var selectedExtensionFiles = userFiles.find { it.first == selectedTabName }?.second ?: emptyList()
-//    var selectedFile = remember { mutableStateOf(0) }
+    var selectedTabName by remember { mutableStateOf(availableFileExtensions[selectedTabIndex])}
+    var selectedExtensionFiles by remember {
+      mutableStateOf(allDownloadedFiles[selectedTabName] ?: emptyList())
+    }
 
     var selectedRadioIndex by remember { mutableStateOf(-1) }
     var userCommand = remember {mutableStateOf("")}
+    var gptAnswer by remember { mutableStateOf("GPT Answer Test") }
+
+    var selectedFile: String
 
     Column(modifier = Modifier.fillMaxWidth()){
 
@@ -74,7 +76,7 @@ fun PunctualAnalysisScreen(
             onTabClick = { clickedTabIndex ->
                 selectedTabIndex = clickedTabIndex
                 selectedTabName = availableFileExtensions.getOrElse(clickedTabIndex) { "" }
-                selectedExtensionFiles = userFiles.find { it.first == selectedTabName }?.second ?: emptyList()
+                selectedExtensionFiles = allDownloadedFiles[selectedTabName] ?: emptyList()
                 selectedRadioIndex = -1
             }
         )
@@ -114,11 +116,13 @@ fun PunctualAnalysisScreen(
                                 selected = selectedRadioIndex == selectedIndex,
                                 onClick = {
                                     selectedRadioIndex = selectedIndex
+                                    selectedFile = selectedExtensionFiles[selectedRadioIndex]
+                                    Log.d("StartupFIAPLog", "selectedFile: $selectedFile")
                                 },
                                 modifier = Modifier
                                     .padding(end = 8.dp)
                             )
-                            Text(text = item)
+                            Text(text = item.split("/").last())
                         }
                     }
                 }
