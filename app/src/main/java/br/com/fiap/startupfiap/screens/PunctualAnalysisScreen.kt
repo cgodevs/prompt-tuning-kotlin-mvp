@@ -33,6 +33,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.input.KeyboardType
@@ -111,7 +112,9 @@ fun PunctualAnalysisScreen(
                             modifier = Modifier.fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
+                            var isValidExtension = listOf("txt", "xlsx").contains(item.split(".").last())
                             val selectedIndex = selectedExtensionFiles.indexOf(item)
+
                             RadioButton(
                                 selected = selectedRadioIndex == selectedIndex,
                                 onClick = {
@@ -120,9 +123,13 @@ fun PunctualAnalysisScreen(
                                     Log.d("StartupFIAPLog", "selectedFile: $selectedFile")
                                 },
                                 modifier = Modifier
-                                    .padding(end = 8.dp)
+                                    .padding(end = 8.dp),
+                                enabled = isValidExtension
                             )
-                            Text(text = item.split("/").last())
+                            Text(
+                                text = item.split("/").last(),
+                                style = TextStyle(color = if(isValidExtension) Color.Black else Color.Gray)
+                            )
                         }
                     }
                 }
